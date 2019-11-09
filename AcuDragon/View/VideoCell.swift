@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class VideoCell: BaseCell {
+class VideoCell: UICollectionViewCell {
     
     var videoItem = Items()
     var delegate: reloadDataDelegate?
@@ -79,7 +79,7 @@ class VideoCell: BaseCell {
         return sv
     }()
     
-    override func setupViews() {
+    func setupViews() {
         backgroundColor = UIColor.white
         
         // add views

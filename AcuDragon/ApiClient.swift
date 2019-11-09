@@ -13,7 +13,7 @@ protocol reloadDataDelegate {
 }
 
 class ApiClient {
-    
+
     static var videosArray = Video()
     var delegate: reloadDataDelegate?
 
@@ -33,7 +33,7 @@ class ApiClient {
         }
     }
 
-    
+
     func fetchVideos(pageNum: Int) {
 
         // AcuDragon search by channelId
@@ -41,15 +41,15 @@ class ApiClient {
 
 //        let urlString = "https://www.googleapis.com/youtube/v3/playlists?part=id.kind=youtube#video&status&channelId=\(secret.awsChannelId)&list=\(secret.awsplaylist_privateForApp)&key=AIzaSyCz7ChsZALe88gbZuQyexQY82oQ1de6qZU"
 
-        
+
 //        let urlString = "\(Constants.baseUrlString)\(secret.myAPIKey)&channelId=\(secret.awsChannelId)&part=snippet,id&list=\(secret.awsplaylist_privateForApp)"
 
         let url = URL(string: urlString)
         let urlRequest = URLRequest(url: url!)
-        
+
         getVideoData(urlRequest: urlRequest, completion: { (Video) in
             ApiClient.videosArray = Video
-            
+
             DispatchQueue.main.async() {
                 self.delegate?.updateUI()
             }
@@ -58,7 +58,7 @@ class ApiClient {
 
     func getVideoData(urlRequest: URLRequest, completion: @escaping (_ jsonArr: Video) -> ()) {
 
-        
+
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
 
             if error != nil {
@@ -76,7 +76,7 @@ class ApiClient {
                     dump(result)
 //                    print((result.items?.count)!)
                 }
-                
+
                 completion(ApiClient.videosArray)
 
             } catch let error {
@@ -116,19 +116,19 @@ class ApiClient {
 //            }
 //        }.resume()
 //    }
-    
+
     func downloadImage(urlString: String, completion: @escaping(UIImage?)->()) {
-       
+
         if let url = URL(string: urlString) {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     print(error!)
                     return
                 }
-                
+
                 guard let data = data else { return }
                 let img = UIImage(data: data)
-                
+
                 DispatchQueue.main.async() {
                     completion(img)
                     self.delegate?.updateUI()

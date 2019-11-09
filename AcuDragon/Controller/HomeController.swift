@@ -9,11 +9,6 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
-    let menuBar: MenuBar = {
-        let mb = MenuBar()
-        return mb
-    }()
 
     var activityIndicator: UIActivityIndicatorView!
     let apiClient = ApiClient()
@@ -28,6 +23,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         apiClient.delegate = self
+        collectionView?.backgroundColor = .white
 
         startActivityIndicator()
         setupViewController()
@@ -95,21 +91,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
-        
-        let navTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
-        navTitleLabel.text = "Home"
-        navTitleLabel.font = UIFont.systemFont(ofSize: 20)
-        navTitleLabel.textColor = UIColor.white
-        navigationItem.titleView = navTitleLabel
-        collectionView?.backgroundColor = UIColor.white
-        
-        setupMenuBar()
-    }
 
-    private func setupMenuBar() {
-        view.addSubview(menuBar)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
     }
     
     // MARK:- CollectionView Delegate Methods
@@ -124,9 +106,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellid", for: indexPath) as! VideoCell
         let videoInfo = ApiClient.videosArray.items![indexPath.row]
+        cell.backgroundColor = .cyan
         
-        print("\(String(describing: (videoInfo.snippet?.title!)!))\n\(String(describing: (videoInfo.snippet?.thumbnails?.high?.url!)!))\n*****\n")
-        
+        // use test data to check formating
         if isEmptyStateFlag == true {
             // empty state - draw minimal collectionview - get data from local file
             apiClient.EmptyFlagIsTrueGetDataFromLocalFile()
@@ -154,15 +136,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-    
-    // MARK:- TODO MenuBar Methods
-    @objc func handleSearch() {
-        print("123")
-    }
-    
-    @objc func handleMore() {
-        print("234")
     }
 }
 
