@@ -17,7 +17,7 @@ class ApiClient {
     static var videosArray = Video()
     var delegate: reloadDataDelegate?
 
-    func EmptyFlagIsTrueGetDataFromLocalFile() {
+    public static func EmptyFlagIsTrueGetDataFromLocalFile() {
         // for test purpose only - read from local file
 
         if let url = Bundle.main.url(forResource: "aws1", withExtension: "txt") {
@@ -28,9 +28,9 @@ class ApiClient {
                 print("error:\(error)")
             }
         }
-        DispatchQueue.main.async() {
-            self.delegate?.updateUI()
-        }
+//        DispatchQueue.main.async() {
+//            self.delegate?.updateUI()
+//        }
     }
 
 
