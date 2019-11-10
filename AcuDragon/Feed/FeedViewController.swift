@@ -1,41 +1,41 @@
 //
-//  ViewController.swift
-//  AcuDragon
+//  FeedViewController.swift
+//  GoogleAPIClientForREST
 //
-//  Created by Emiko Clark on 1/22/18.
-//  Copyright © 2018 Emiko Clark. All rights reserved.
+//  Created by Emiko Clark on 11/10/19.
 //
 
 import UIKit
 
-class HomeController: UIViewController, UICollectionViewDelegate {
+class FeedViewController: UICollectionViewController, UICollectionViewFlowLayout {
 
-    let feedCollectionView: UICollectionViewController!
     var activityIndicator: UIActivityIndicatorView!
     let apiClient = ApiClient()
     let pageNum = Constants.pageNum
     var isEmptyStateFlag = true
+    let feedDatasource = FeedDatasource()
 
     // MARK:- View Methods
     override func viewWillAppear(_ animated: Bool) {
         initializeVideoModelForEmptyState()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         apiClient.delegate = self
-        feedCollectionView.delegate = self
-        feedCollectionView.dataSource = self
-        feedCollectionView?.backgroundColor = .white
+        collectionView?.delegate = self
+        collectionView?.dataSource = feedDatasource
+        
+        collectionView?.backgroundColor = .white
 
         let layout = UICollectionViewFlowLayout()
-        feedCollectionView = UICollectionView(frame: layout)
-        feedCollectionView.register(feedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCell")
+        collectionView?.collectionViewLayout = layout
+        collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId")
 
         startActivityIndicator()
         setupViewController()
 //        self.apiClient.fetchVideos(pageNum: pageNum)
-       
+
         // for test purpose using local json
         if isEmptyStateFlag == true {
             setupViewController()
@@ -45,39 +45,39 @@ class HomeController: UIViewController, UICollectionViewDelegate {
 
         }
     }
-    
+
     // MARK:- Setup/Initialization Methods
     func initializeVideoModelForEmptyState() {
-        
+
         // create empty video array for empty state
         let videoArray = Video()
         videoArray.etag = " "
         videoArray.items = [Items]()
-        
+
         let itemsArr = Items()
         itemsArr.etag = " "
         itemsArr.channelTitle = " "
         itemsArr.id = Id()
         itemsArr.id?.playlistId = " "
-        
+
         var snippet = Snippet()
         snippet.channelId = " "
         snippet.title = " "
         snippet.description = " "
-        
+
         var videoThumbnails = VideoThumbnails()
         videoThumbnails.high = Thumbnails()
-        
+
         videoThumbnails.high?.url = " "
         videoThumbnails.high?.height = 0
         videoThumbnails.high?.width = 0
-        
+
         snippet.thumbnails = videoThumbnails
         itemsArr.snippet = snippet
         videoArray.items?.append(itemsArr)
         ApiClient.videosArray = videoArray
     }
-    
+
     func startActivityIndicator() {
         self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
         self.activityIndicator.color = .blue
@@ -89,31 +89,31 @@ class HomeController: UIViewController, UICollectionViewDelegate {
 
     func setupViewController() {
         // Register cell
-        self.collectionView!.register(VideoCell.self, forCellWithReuseIdentifier: "cellid")
-        
-        // adjust collectionview and scrollview to begin below menubar
-        collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
-        
+        self.feedCollectionView!.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId")
+
+//        // adjust collectionview and scrollview to begin below menubar
+//        feedCollectionView?.inset .contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
+//        feedCollectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
+
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
 
     }
-    
+
     // MARK:- CollectionView Delegate Methods
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (ApiClient.videosArray.items?.count)!
     }
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellid", for: indexPath) as! VideoCell
+
+    private func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedId", for: indexPath) as! FeedCollectionViewCell
         let videoInfo = ApiClient.videosArray.items![indexPath.row]
         cell.backgroundColor = .cyan
-        
+
         // use test data to check formating
         if isEmptyStateFlag == true {
             // empty state - draw minimal collectionview - get data from local file
@@ -126,14 +126,11 @@ class HomeController: UIViewController, UICollectionViewDelegate {
                 cell.titleLabel.text =  videoInfo.snippet?.title
                 cell.subtitleLabel.text =  videoInfo.snippet?.description
                 // MARK:- FIXME recusive download of thumbnails
-//                apiClient.downloadImage(urlString: (videoInfo.snippet?.thumbnails?.high?.url!)!) { (thumbnailImage) in
-//                    cell.thumbnailImageView.image = thumbnailImage
-//                }
             }
         }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (view.frame.width - 16 - 16) * 9 / 16
         VideoCell.videoHeight = height
@@ -146,8 +143,8 @@ class HomeController: UIViewController, UICollectionViewDelegate {
 }
 
 // MARK:- Extensions
-extension HomeController : reloadDataDelegate {
-    func updateUI() {
+extension FeedViewController : reloadDataDelegate {
+    func updateFeedUI() {
         self.activityIndicator.stopAnimating()
         self.activityIndicator.isHidden = true
         self.collectionView?.reloadData()

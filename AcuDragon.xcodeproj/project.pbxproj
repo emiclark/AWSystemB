@@ -23,6 +23,12 @@
 		67615D83B77D8E8FAD83FBDE /* Pods_AcuDragon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C55E077913BF37EB4F4E31B /* Pods_AcuDragon.framework */; };
 		D6C0727E23773A1400662731 /* Video2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0727D23773A1400662731 /* Video2.swift */; };
 		D6C07283237766EF00662731 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C07282237766EF00662731 /* ApiClient.swift */; };
+		D6C072852377B43B00662731 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C072842377B43B00662731 /* Tabbar.swift */; };
+		D6C072872378A0B600662731 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C072862378A0B600662731 /* ProfileViewController.swift */; };
+		D6C072892378A10800662731 /* MiscViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C072882378A10800662731 /* MiscViewController.swift */; };
+		D6C0728B2378B01500662731 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0728A2378B01500662731 /* FeedCollectionViewCell.swift */; };
+		D6C0728F2378B0FA00662731 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0728E2378B0FA00662731 /* FeedViewController.swift */; };
+		D6C072922378B3E000662731 /* FeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C072912378B3E000662731 /* FeedDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +52,12 @@
 		77BA1D0AE365A89427DFCB1C /* Pods-AcuDragon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcuDragon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AcuDragon/Pods-AcuDragon.debug.xcconfig"; sourceTree = "<group>"; };
 		D6C0727D23773A1400662731 /* Video2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video2.swift; sourceTree = "<group>"; };
 		D6C07282237766EF00662731 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		D6C072842377B43B00662731 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		D6C072862378A0B600662731 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D6C072882378A10800662731 /* MiscViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscViewController.swift; sourceTree = "<group>"; };
+		D6C0728A2378B01500662731 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		D6C0728E2378B0FA00662731 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		D6C072912378B3E000662731 /* FeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +106,7 @@
 				00478BBB20772D5E00C69D46 /* Constants.swift */,
 				0027C239201A36CB00B8E6DA /* Model */,
 				0023F0872017EF3300D62A51 /* View */,
+				D6C072902378B3AE00662731 /* Feed */,
 				0023F08A2017EF7900D62A51 /* Controller */,
 				D6C07282237766EF00662731 /* ApiClient.swift */,
 			);
@@ -120,6 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				0023F0822016C51800D62A51 /* HomeController.swift */,
+				D6C072842377B43B00662731 /* Tabbar.swift */,
+				D6C072862378A0B600662731 /* ProfileViewController.swift */,
+				D6C072882378A10800662731 /* MiscViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,6 +164,16 @@
 				3C55E077913BF37EB4F4E31B /* Pods_AcuDragon.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6C072902378B3AE00662731 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				D6C0728E2378B0FA00662731 /* FeedViewController.swift */,
+				D6C0728A2378B01500662731 /* FeedCollectionViewCell.swift */,
+				D6C072912378B3E000662731 /* FeedDataSource.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,12 +298,18 @@
 				0023F0832016C51800D62A51 /* HomeController.swift in Sources */,
 				005F50992079E5610096AE05 /* secret.swift in Sources */,
 				0027C23B201A36E300B8E6DA /* Video.swift in Sources */,
+				D6C072892378A10800662731 /* MiscViewController.swift in Sources */,
+				D6C072852377B43B00662731 /* Tabbar.swift in Sources */,
 				0023F0892017EF4D00D62A51 /* VideoCell.swift in Sources */,
 				0023F0712016BBE800D62A51 /* AppDelegate.swift in Sources */,
+				D6C0728F2378B0FA00662731 /* FeedViewController.swift in Sources */,
+				D6C072872378A0B600662731 /* ProfileViewController.swift in Sources */,
 				0023F0862017EE2200D62A51 /* extensions.swift in Sources */,
 				0023F08C2017F14100D62A51 /* MenuBar.swift in Sources */,
 				D6C0727E23773A1400662731 /* Video2.swift in Sources */,
 				00478BBC20772D5E00C69D46 /* Constants.swift in Sources */,
+				D6C0728B2378B01500662731 /* FeedCollectionViewCell.swift in Sources */,
+				D6C072922378B3E000662731 /* FeedDataSource.swift in Sources */,
 				D6C07283237766EF00662731 /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

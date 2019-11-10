@@ -18,27 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-
-        let vc = UIViewController()
-        let navigationController = UINavigationController(rootViewController: vc)
-        self.window?.rootViewController = navigationController
-        self.window!.makeKeyAndVisible()
-        let layout = UICollectionViewFlowLayout()
-        window?.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
-        
-        // remove black bar beneath navbar
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().setBackgroundImage(UIImage(),for: .default)
-        
-        application.statusBarStyle = .lightContent
-
-        // add darker red to status bar
-        let statusBarView = UIView()
-        statusBarView.backgroundColor = UIColor.rgb(red: 194, green: 40, blue: 40)
-        window?.addSubview(statusBarView)
-        window?.addConstraintsWithFormat(format: "H:|[v0]|", views: statusBarView)
-        window?.addConstraintsWithFormat(format: "V:|[v0(30)]", views: statusBarView)
-        
+        window?.rootViewController = TabBarController()
+        window?.makeKeyAndVisible()
         return true
     }
     
@@ -67,6 +48,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//======= old func b4 tabbar ============================
+//func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        let tabBarVC = HomeController()
+//        window?.rootViewController = tabBarVC
+//        window?.makeKeyAndVisible()
+//
+////        let vc = UIViewController()
+////        let navigationController = UINavigationController(rootViewController: vc)
+////        self.window?.rootViewController = navigationController
+////        self.window!.makeKeyAndVisible()
+////        let layout = UICollectionViewFlowLayout()
+////        window?.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
+//
+//        // remove black bar beneath navbar
+////        UINavigationBar.appearance().shadowImage = UIImage()
+////        UINavigationBar.appearance().setBackgroundImage(UIImage(),for: .default)
+//
+////        application.statusBarStyle = .lightContent
+//
+//        // add darker red to status bar
+////        let statusBarView = UIView()
+////        statusBarView.backgroundColor = UIColor.rgb(red: 194, green: 40, blue: 40)
+////        window?.addSubview(statusBarView)
+////        window?.addConstraintsWithFormat(format: "H:|[v0]|", views: statusBarView)
+////        window?.addConstraintsWithFormat(format: "V:|[v0(30)]", views: statusBarView)
+////
+//        return true
+//    }
 //====================== below with google signIn ================
 ////
 ////  AppDelegate.swift
