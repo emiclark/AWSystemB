@@ -8,10 +8,7 @@
 
 import UIKit
 
-class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    let view = UIView()
-    
+class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {    
     // MARK:- CollectionView Delegate Methods
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,9 +30,7 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-       let height = (view.frame.width - 16 - 16) * 9 / 16
-       VideoCell.videoHeight = height
-       return CGSize(width: view.frame.width, height: height)
+        return CGSize(width: 150, height: 150)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

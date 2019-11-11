@@ -13,7 +13,7 @@ class MiscViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue
-        title = "Miscellaneous"
+        title = "Misc"
     }
     
 
