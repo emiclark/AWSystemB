@@ -7,32 +7,27 @@
 
 import UIKit
 
-class FeedViewController: UICollectionViewController {
+class FeedViewController: UIViewController, UICollectionViewDelegate {
 
-    var activityIndicator: UIActivityIndicatorView!
-    let apiClient = ApiClient()
-    let pageNum = Constants.pageNum
-    var isEmptyStateFlag = true
     let feedDatasource = FeedDataSource()
+    let flowLayout = UICollectionViewLayout()
 
     override func viewDidLoad() {
+        title = "Acudragon Wellness System"
+        let collectionView = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: flowLayout)
         super.viewDidLoad()
-        collectionView?.delegate = self
-        let feedDatasource = FeedDataSource()
-        collectionView?.dataSource = (feedDatasource as! UICollectionViewDataSource)
-        collectionView?.backgroundColor = .white
-        let layout = UICollectionViewFlowLayout()
-        collectionView?.collectionViewLayout = layout
-
+        collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId")
+        collectionView.delegate = self
+        collectionView.dataSource = feedDatasource
+        collectionView.backgroundColor = .white
+        
         setupFeedViewController()
+        view.addSubview(collectionView)
     }
 
     func setupFeedViewController() {
-        // Register cell
-        self.collectionView!.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId")
-
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
+//        navigationController?.navigationBar.barTintColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
     }
 }
 

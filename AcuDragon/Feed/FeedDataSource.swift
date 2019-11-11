@@ -15,7 +15,7 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     // MARK:- CollectionView Delegate Methods
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return (ApiClient.videosArray.items?.count)!
+       return 3
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -23,7 +23,7 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     }
 
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedId", for: indexPath) as! FeedCollectionViewCell
+       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId", for: indexPath) as! FeedCollectionViewCell
        let videoInfo = ApiClient.videosArray.items![indexPath.row]
        cell.backgroundColor = .cyan
 
