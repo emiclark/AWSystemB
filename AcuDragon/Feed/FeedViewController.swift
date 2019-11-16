@@ -25,6 +25,10 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         view.addSubview(collectionView)
         navigationController?.navigationBar.isTranslucent = false
     }
+
+    func setupFeedViewController() {
+
+    }
 }
 
 //// MARK:- Extensions
