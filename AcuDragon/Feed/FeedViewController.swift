@@ -13,13 +13,12 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
     let flowLayout = UICollectionViewLayout()
 
     override func viewDidLoad() {
-        title = "Acudragon Wellness System"
         let collectionView = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: flowLayout)
         super.viewDidLoad()
         collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId")
         collectionView.delegate = self
         collectionView.dataSource = feedDatasource
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .purple
         
         setupFeedViewController()
         view.addSubview(collectionView)

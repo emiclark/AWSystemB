@@ -19,8 +19,8 @@
 		00478BBC20772D5E00C69D46 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00478BBB20772D5E00C69D46 /* Constants.swift */; };
 		0052879621E689AC00B9CB21 /* aws1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0052879521E689AC00B9CB21 /* aws1.txt */; };
 		005391092024F01C00D58FD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 005391082024F01C00D58FD7 /* GoogleService-Info.plist */; };
-		005F50992079E5610096AE05 /* secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005F50982079E5610096AE05 /* secret.swift */; };
 		67615D83B77D8E8FAD83FBDE /* Pods_AcuDragon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C55E077913BF37EB4F4E31B /* Pods_AcuDragon.framework */; };
+		D65692E123807099009D5CDB /* secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65692E023807099009D5CDB /* secret.swift */; };
 		D6C0727E23773A1400662731 /* Video2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0727D23773A1400662731 /* Video2.swift */; };
 		D6C07283237766EF00662731 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C07282237766EF00662731 /* ApiClient.swift */; };
 		D6C072852377B43B00662731 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C072842377B43B00662731 /* Tabbar.swift */; };
@@ -46,10 +46,10 @@
 		00478BBB20772D5E00C69D46 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = AcuDragon/Constants.swift; sourceTree = SOURCE_ROOT; };
 		0052879521E689AC00B9CB21 /* aws1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aws1.txt; sourceTree = "<group>"; };
 		005391082024F01C00D58FD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		005F50982079E5610096AE05 /* secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secret.swift; sourceTree = "<group>"; };
 		25293DFD10B8002E67E68098 /* Pods-AcuDragon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcuDragon.release.xcconfig"; path = "Pods/Target Support Files/Pods-AcuDragon/Pods-AcuDragon.release.xcconfig"; sourceTree = "<group>"; };
 		3C55E077913BF37EB4F4E31B /* Pods_AcuDragon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AcuDragon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77BA1D0AE365A89427DFCB1C /* Pods-AcuDragon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcuDragon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AcuDragon/Pods-AcuDragon.debug.xcconfig"; sourceTree = "<group>"; };
+		D65692E023807099009D5CDB /* secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secret.swift; sourceTree = "<group>"; };
 		D6C0727D23773A1400662731 /* Video2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video2.swift; sourceTree = "<group>"; };
 		D6C07282237766EF00662731 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		D6C072842377B43B00662731 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				0023F0702016BBE800D62A51 /* AppDelegate.swift */,
-				005F50982079E5610096AE05 /* secret.swift */,
+				D65692E023807099009D5CDB /* secret.swift */,
 				0023F06F2016BBE800D62A51 /* AcuDragon */,
 				0023F08B2017F14100D62A51 /* MenuBar.swift */,
 				0023F0842017EDE400D62A51 /* helpers */,
@@ -296,13 +296,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0023F0832016C51800D62A51 /* HomeController.swift in Sources */,
-				005F50992079E5610096AE05 /* secret.swift in Sources */,
 				0027C23B201A36E300B8E6DA /* Video.swift in Sources */,
 				D6C072892378A10800662731 /* MiscViewController.swift in Sources */,
 				D6C072852377B43B00662731 /* Tabbar.swift in Sources */,
 				0023F0892017EF4D00D62A51 /* VideoCell.swift in Sources */,
 				0023F0712016BBE800D62A51 /* AppDelegate.swift in Sources */,
 				D6C0728F2378B0FA00662731 /* FeedViewController.swift in Sources */,
+				D65692E123807099009D5CDB /* secret.swift in Sources */,
 				D6C072872378A0B600662731 /* ProfileViewController.swift in Sources */,
 				0023F0862017EE2200D62A51 /* extensions.swift in Sources */,
 				0023F08C2017F14100D62A51 /* MenuBar.swift in Sources */,
