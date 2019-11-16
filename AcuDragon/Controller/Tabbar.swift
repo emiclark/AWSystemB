@@ -17,15 +17,15 @@ class TabBarController: UITabBarController {
     func setupTabBar() {
         // tab 1
         let tab1 = UINavigationController(rootViewController: FeedViewController())
-        tab1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home.jpg"), tag: 0)
+        tab1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home.jpg"), tag: 0)
 
         // tab 2
         let tab2 = UINavigationController(rootViewController: MiscViewController())
-        tab2.tabBarItem = UITabBarItem(title: "Misc", image: UIImage(named: "trending.jpg"), tag: 1)
+        tab2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "trending.jpg"), tag: 1)
 
         // tab 3
         let tab3 = UINavigationController(rootViewController: ProfileViewController())
-        tab3.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "account.jpg"), tag: 2)
+        tab3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "account.jpg"), tag: 2)
 
         viewControllers = [tab1, tab2, tab3]
     }

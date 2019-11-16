@@ -18,7 +18,10 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId")
         collectionView.delegate = self
         collectionView.dataSource = feedDatasource
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .purple
+        
+        setupFeedViewController()
+
         view.addSubview(collectionView)
         navigationController?.navigationBar.isTranslucent = false
     }
