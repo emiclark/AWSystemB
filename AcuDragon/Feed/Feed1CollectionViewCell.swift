@@ -1,15 +1,15 @@
 //
-//  FeedCollectionViewCell.swift
+//  Feed1CollectionViewCell.swift
 //  AcuDragon
 //
-//  Created by Emiko Clark on 11/10/19.
+//  Created by Emiko Clark on 11/17/19.
 //  Copyright © 2019 Emiko Clark. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
-class FeedCollectionViewCell: UICollectionViewCell {
+class Feed1CollectionViewCell: UICollectionViewCell {
 
     lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()

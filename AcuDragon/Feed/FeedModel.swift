@@ -10,7 +10,7 @@ import UIKit
 
 class FeedModel: NSObject {
 
-    public static var feedVideos = Video()
+    public var feedVideos = Video()
     var delegate: reloadDataDelegate?
 
     func getTestData() {
@@ -18,7 +18,7 @@ class FeedModel: NSObject {
         if let url = Bundle.main.url(forResource: "aws1", withExtension: "txt") {
             do {
                 let data = try Data(contentsOf: url)
-                FeedModel.feedVideos = try JSONDecoder().decode(Video.self, from: data)
+                feedVideos = try JSONDecoder().decode(Video.self, from: data)
             } catch {
                 print("error:\(error)")
             }

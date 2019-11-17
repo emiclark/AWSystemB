@@ -22,15 +22,21 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId", for: indexPath) as! FeedCollectionViewCell
-            cell.backgroundColor = .cyan
-
-            if let videoInfo = FeedModel.feedVideos.items?[indexPath.row].snippet {
-                cell.configure(with: videoInfo)
+            if indexPath.section == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
+                cell.backgroundColor = .red
+                return cell
             }
 
-           // use test data to check formating
-           return cell
+            if indexPath.section == 1 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId2", for: indexPath) as! Feed2CollectionViewCell
+                cell.backgroundColor = .systemPink
+                return cell
+            }
+
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! FeedMainCollectionViewCell
+            cell.backgroundColor = .purple
+            return cell
         }
 
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -49,6 +55,16 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
            return 0
         }
     }
+
+
+//==
+//    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId", for: indexPath) as! FeedCollectionViewCell
+//            cell.backgroundColor = .cyan
+//
+//            if let videoInfo = feedModel.feedVideos.items?[indexPath.row].snippet {
+//                cell.configure(with: videoInfo)
+//            }
+//==
 
 //=== b4 refactor to feedVC datasource and viewmodel
 //class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

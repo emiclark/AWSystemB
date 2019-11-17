@@ -15,7 +15,8 @@ protocol reloadDataDelegate {
 class ApiClient {
 
     var delegate: reloadDataDelegate?
-
+    let feedModel = FeedModel()
+    
     func fetchVideos(pageNum: Int) {
 
         // AcuDragon search by channelId
@@ -30,7 +31,7 @@ class ApiClient {
         let urlRequest = URLRequest(url: url!)
 
         getVideoData(urlRequest: urlRequest, completion: { (Video) in
-            FeedModel.feedVideos = Video
+            self.feedModel.feedVideos = Video
 
             DispatchQueue.main.async() {
                 self.delegate?.updateUI()
@@ -58,7 +59,7 @@ class ApiClient {
 //                    print((result.items?.count)!)
                 }
 
-                completion(FeedModel.feedVideos)
+                completion(self.feedModel.feedVideos)
 
             } catch let error {
                 print("Failed to decode: \(error)")
