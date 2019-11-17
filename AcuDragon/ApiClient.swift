@@ -14,26 +14,9 @@ protocol reloadDataDelegate {
 
 class ApiClient {
 
-    static var videosArray = Video()
     var delegate: reloadDataDelegate?
-
-    public static func EmptyFlagIsTrueGetDataFromLocalFile() {
-        // for test purpose only - read from local file
-
-        if let url = Bundle.main.url(forResource: "aws1", withExtension: "txt") {
-            do {
-                let data = try Data(contentsOf: url)
-                ApiClient.videosArray = try JSONDecoder().decode(Video.self, from: data)
-            } catch {
-                print("error:\(error)")
-            }
-        }
-//        DispatchQueue.main.async() {
-//            self.delegate?.updateUI()
-//        }
-    }
-
-
+    let feedModel = FeedModel()
+    
     func fetchVideos(pageNum: Int) {
 
         // AcuDragon search by channelId
@@ -48,7 +31,7 @@ class ApiClient {
         let urlRequest = URLRequest(url: url!)
 
         getVideoData(urlRequest: urlRequest, completion: { (Video) in
-            ApiClient.videosArray = Video
+            self.feedModel.feedVideos = Video
 
             DispatchQueue.main.async() {
                 self.delegate?.updateUI()
@@ -57,7 +40,6 @@ class ApiClient {
     }
 
     func getVideoData(urlRequest: URLRequest, completion: @escaping (_ jsonArr: Video) -> ()) {
-
 
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
 
@@ -77,7 +59,7 @@ class ApiClient {
 //                    print((result.items?.count)!)
                 }
 
-                completion(ApiClient.videosArray)
+                completion(self.feedModel.feedVideos)
 
             } catch let error {
                 print("Failed to decode: \(error)")

@@ -6,30 +6,139 @@
 //
 
 import UIKit
+import SnapKit
 
-class FeedViewController: UIViewController, UICollectionViewDelegate {
+class FeedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
+    private let feedModel = FeedModel()
     private let feedDatasource = FeedDataSource()
 
+    var feedCollectionview: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 16
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .cyan
+        return cv
+    }()
+
     override func viewDidLoad() {
-        let flowLayout = UICollectionViewLayout()
-        let collectionView = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: flowLayout)
         super.viewDidLoad()
-        collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId")
-        collectionView.delegate = self
-        collectionView.dataSource = feedDatasource
-        collectionView.backgroundColor = .purple
-        
+        feedCollectionview.register(FeedMainCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")
+        feedCollectionview.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId1")
+        feedCollectionview.register(Feed2CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId2")
         setupFeedViewController()
 
-        view.addSubview(collectionView)
+        feedCollectionview.delegate = self
+        feedCollectionview.dataSource = feedDatasource
+
         navigationController?.navigationBar.isTranslucent = false
+        feedModel.getTestData()
     }
 
     func setupFeedViewController() {
+        view.addSubview(feedCollectionview)
 
+        feedCollectionview.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    // MARK:- CollectionView Delegate Methods
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+            case 1:
+                return 3
+            case 2:
+                return 3
+            case 3:
+                return 4
+            default:
+                return 1
+        }
+        return 1
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+
+    private func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        if indexPath.section == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
+
+            //        if let videoInfo = feedModel.feedVideos.items![indexPath.row] {
+            //            cell.configure(with: videoInfo)
+            cell.backgroundColor = .green
+            return cell
+
+        }
+
+        if indexPath.section == 2 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId2", for: indexPath) as! Feed2CollectionViewCell
+
+            //        if let videoInfo = feedModel.feedVideos.items![indexPath.row] {
+            //            cell.configure(with: videoInfo)
+            cell.backgroundColor = .systemTeal
+            return cell
+
+        }
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! FeedMainCollectionViewCell
+        cell.backgroundColor = .blue
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = (view.frame.width - 16 - 16) * 9 / 16
+//        VideoCell.videoHeight = height
+        return CGSize(width: view.frame.width, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
+
+extension FeedViewController : reloadDataDelegate {
+    func updateUI() {
+        self.feedCollectionview.reloadData()
+    }
+}
+
+//=======
+    // MARK:- CollectionView Delegate Methods
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return (ApiClient.videosArray.items?.count)!
+//    }
+//
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//
+//    private func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId", for: indexPath) as! FeedCollectionViewCell
+//        if let videoInfo = ApiClient.videosArray.items![indexPath.row].snippet {
+//            cell.configure(with: videoInfo)
+//        }
+//
+//        ApiClient.EmptyFlagIsTrueGetDataFromLocalFile()
+//        cell.backgroundColor = .cyan
+//        return cell
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let height = (view.frame.width - 16 - 16) * 9 / 16
+//        VideoCell.videoHeight = height
+//        return CGSize(width: view.frame.width, height: height)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0
+//    }
+//=========
 
 //// MARK:- Extensions
 //extension FeedViewController : reloadDataDelegate {
