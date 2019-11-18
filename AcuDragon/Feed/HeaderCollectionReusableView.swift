@@ -25,12 +25,22 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     func setupViews() {
         addSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().offset(10)
         }
     }
 
-    func setup(count: Int) {
-        headerLabel.text = "\(count)"
+    func setup(headerFor section: Int) -> String {
+        var headerText = ""
+        switch section {
+            case 0:
+                headerText = "Header 1"
+            case 1:
+                headerText = "Header 2"
+            case 2:
+                headerText = "Header 3"
+            default:
+                headerText = "default"
+        }
+        return headerText
     }
-
 }

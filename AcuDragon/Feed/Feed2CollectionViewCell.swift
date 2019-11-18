@@ -11,52 +11,30 @@ import SnapKit
 
 class Feed2CollectionViewCell: UICollectionViewCell {
 
-    lazy var thumbnailImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "channelDragonPlaceholder.png")
-        return iv
+    lazy var collectionView1: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 16
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .orange
+        return cv
     }()
 
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16.0)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.backgroundColor = UIColor.white
-        label.textColor = UIColor.darkGray
-        return label
-    }()
-
-    lazy var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16.0)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.backgroundColor = UIColor.white
-        label.textColor = UIColor.darkGray
-        return label
-    }()
-
-    lazy var stackview: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel, subtitleLabel])
-        sv.axis = .vertical
-        sv.distribution = .fillEqually
-        sv.spacing = 3
-        return sv
-    }()
-
-    func setupView() {
-        addSubview(stackview)
-
-        stackview.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
     }
 
-    func configure(with snippet: Snippet) {
-        titleLabel.text = snippet.title
-        subtitleLabel.text = snippet.description
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented:")
+    }
+
+    func setupView() {
+        addSubview(collectionView1)
+        backgroundColor = .lightGray
+
+        collectionView1.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
