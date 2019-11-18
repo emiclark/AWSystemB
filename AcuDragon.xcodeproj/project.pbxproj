@@ -87,6 +87,7 @@
 				D65692E023807099009D5CDB /* secret.swift */,
 				0023F06F2016BBE800D62A51 /* AcuDragon */,
 				0023F08B2017F14100D62A51 /* MenuBar.swift */,
+				0023F0822016C51800D62A51 /* HomeController.swift */,
 				0023F0842017EDE400D62A51 /* helpers */,
 				0023F07C2016BBE800D62A51 /* Info.plist */,
 				005391082024F01C00D58FD7 /* GoogleService-Info.plist */,
@@ -140,7 +141,6 @@
 		0023F08A2017EF7900D62A51 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0023F0822016C51800D62A51 /* HomeController.swift */,
 				D6C072842377B43B00662731 /* Tabbar.swift */,
 				D6C072862378A0B600662731 /* ProfileViewController.swift */,
 				D6C072882378A10800662731 /* MiscViewController.swift */,

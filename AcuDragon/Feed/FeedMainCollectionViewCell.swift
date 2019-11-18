@@ -9,54 +9,59 @@
 import UIKit
 import SnapKit
 
-class FeedMainCollectionViewCell: UICollectionViewCell {
+class FeedMainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    lazy var thumbnailImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "channelDragonPlaceholder.png")
-        return iv
+    lazy var collectionView1: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 16
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .orange
+        return cv
     }()
 
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16.0)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.backgroundColor = UIColor.white
-        label.textColor = UIColor.darkGray
-        return label
-    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+        collectionView1.delegate = self
+        collectionView1.dataSource = self
+    }
 
-    lazy var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16.0)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.backgroundColor = UIColor.white
-        label.textColor = UIColor.darkGray
-        return label
-    }()
-
-    lazy var stackview: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel, subtitleLabel])
-        sv.axis = .vertical
-        sv.distribution = .fillEqually
-        sv.spacing = 3
-        return sv
-    }()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented:")
+    }
 
     func setupView() {
-        addSubview(stackview)
-
-        stackview.snp.makeConstraints { make in
+        addSubview(collectionView1)
+        collectionView1.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId1")
+        collectionView1.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
 
-    func configure(with snippet: Snippet) {
-        titleLabel.text = snippet.title
-        subtitleLabel.text = snippet.description
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+       return 5
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
+        cell.backgroundColor = .blue
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         return CGSize(width: 150, height: 140)
+     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
 }
