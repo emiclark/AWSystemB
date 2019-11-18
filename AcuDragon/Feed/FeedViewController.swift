@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FeedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class FeedViewController: UIViewController, UICollectionViewDelegate {
 
     private let feedModel = FeedModel()
     private let feedDatasource = FeedDataSource()
@@ -24,15 +24,12 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        feedCollectionview.delegate = feedDatasource
+        feedCollectionview.dataSource = feedDatasource
         feedCollectionview.register(FeedMainCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")
         feedCollectionview.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId1")
         feedCollectionview.register(Feed2CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId2")
         setupFeedViewController()
-
-        feedCollectionview.delegate = self
-        feedCollectionview.dataSource = feedDatasource
-
-        navigationController?.navigationBar.isTranslucent = false
         feedModel.getTestData()
     }
 
@@ -42,62 +39,6 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
         feedCollectionview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-    }
-
-    // MARK:- CollectionView Delegate Methods
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-            case 1:
-                return 3
-            case 2:
-                return 3
-            case 3:
-                return 4
-            default:
-                return 1
-        }
-        return 1
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }
-
-    private func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        if indexPath.section == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
-
-            //        if let videoInfo = feedModel.feedVideos.items![indexPath.row] {
-            //            cell.configure(with: videoInfo)
-            cell.backgroundColor = .green
-            return cell
-
-        }
-
-        if indexPath.section == 2 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId2", for: indexPath) as! Feed2CollectionViewCell
-
-            //        if let videoInfo = feedModel.feedVideos.items![indexPath.row] {
-            //            cell.configure(with: videoInfo)
-            cell.backgroundColor = .systemTeal
-            return cell
-
-        }
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! FeedMainCollectionViewCell
-        cell.backgroundColor = .blue
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (view.frame.width - 16 - 16) * 9 / 16
-//        VideoCell.videoHeight = height
-        return CGSize(width: view.frame.width, height: height)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
     }
 }
 
