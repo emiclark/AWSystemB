@@ -19,7 +19,7 @@ class FeedMainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .orange
+        cv.backgroundColor = Constants.awsGray1
         return cv
     }()
 
@@ -54,7 +54,6 @@ class FeedMainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
         cell.thumbnailImageView.image = UIImage(named: "dragonPlaceholder.jpg")
         cell.titleLabel.text = "Title for video:\(indexPath.section)"
-        cell.titleLabel.backgroundColor = .green
         return cell
     }
 

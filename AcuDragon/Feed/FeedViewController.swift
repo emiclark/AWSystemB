@@ -18,7 +18,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         layout.minimumLineSpacing = 16
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .cyan
+        cv.backgroundColor = .white
         return cv
     }()
 
@@ -32,7 +32,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         feedCollectionview.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: "HeaderCollectionReusableView", withReuseIdentifier: "headerCellId")
         setupFeedViewController()
         feedModel.getTestData()
-        dump(feedModel.feedVideos.items)
+//        dump(feedModel.feedVideos.items)
     }
 
     func setupFeedViewController() {

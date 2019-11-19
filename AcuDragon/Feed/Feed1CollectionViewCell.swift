@@ -14,6 +14,8 @@ class Feed1CollectionViewCell: UICollectionViewCell {
     lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
+        iv.layer.cornerRadius = 10
+        iv.layer.masksToBounds = true
         iv.clipsToBounds = true
         iv.image = UIImage(named: "channelDragonPlaceholder.png")
         return iv
@@ -29,17 +31,6 @@ class Feed1CollectionViewCell: UICollectionViewCell {
         label.textColor = UIColor.darkGray
         return label
     }()
-//
-//    lazy var subtitleLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont.systemFont(ofSize: 16.0)
-//        label.lineBreakMode = .byWordWrapping
-//        label.numberOfLines = 0
-//        label.text = "subTitle"
-//        label.backgroundColor = UIColor.white
-//        label.textColor = UIColor.darkGray
-//        return label
-//    }()
 
     lazy var stackview: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel])
@@ -66,22 +57,12 @@ class Feed1CollectionViewCell: UICollectionViewCell {
         }
 
         thumbnailImageView.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.leading.top.trailing.equalToSuperview()
             make.height.equalTo(120)
-        }
-
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(thumbnailImageView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
         }
     }
 
-//    func configure(with video: Snippet) {
-//        titleLabel.text = "Vide Title I7nbFXul"
-//        subtitleLabel.text = "Vide Description. I7nbFXul YBIpL0a yR_gDh3e u1k/4u2y EcJX6qW4oAcx k02qmVTvX4"
-//
-//        titleLabel.text = video.title
-//        subtitleLabel.text = video.description
-//    }
+    func configure(with video: Snippet) {
+        titleLabel.text = video.title
+    }
 }
