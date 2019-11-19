@@ -142,8 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				D6C072842377B43B00662731 /* Tabbar.swift */,
-				D6C072862378A0B600662731 /* ProfileViewController.swift */,
 				D6C072882378A10800662731 /* MiscViewController.swift */,
+				D6C072862378A0B600662731 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

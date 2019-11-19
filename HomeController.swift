@@ -1,10 +1,10 @@
-////
-////  ViewController.swift
-////  AcuDragon
-////
-////  Created by Emiko Clark on 1/22/18.
-////  Copyright © 2018 Emiko Clark. All rights reserved.
-////
+//
+//  ViewController.swift
+//  AcuDragon
+//
+//  Created by Emiko Clark on 1/22/18.
+//  Copyright © 2018 Emiko Clark. All rights reserved.
+//
 //
 //import UIKit
 //

@@ -10,7 +10,7 @@ import UIKit
 
 class FeedModel: NSObject {
 
-    public var feedVideos = Video()
+    var feedVideos = Video()
     var delegate: reloadDataDelegate?
 
     func getTestData() {

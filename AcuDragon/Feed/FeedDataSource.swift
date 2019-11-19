@@ -35,14 +35,14 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: UIScreen.main.bounds.width, height: 150)
+        var size = CGSize(width: UIScreen.main.bounds.width, height: 200)
 
         if indexPath.section == 1 {
             size.height = 200
         }
 
         if indexPath.section == 2 {
-            size.height = 175
+            size.height = 200
         }
         return CGSize(width: size.width, height: size.height)
     }

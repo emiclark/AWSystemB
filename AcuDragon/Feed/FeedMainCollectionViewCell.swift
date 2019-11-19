@@ -8,8 +8,11 @@
 
 import UIKit
 import SnapKit
+//import SDWebImage
 
 class FeedMainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
+    let feedModel = FeedModel()
 
     lazy var collectionView1: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -49,12 +52,14 @@ class FeedMainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
-        cell.backgroundColor = .blue
+        cell.thumbnailImageView.image = UIImage(named: "dragonPlaceholder.jpg")
+        cell.titleLabel.text = "Title for video:\(indexPath.section)"
+        cell.titleLabel.backgroundColor = .green
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: 150, height: 140)
+         return CGSize(width: 200, height: 150)
      }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
