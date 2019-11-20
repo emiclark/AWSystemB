@@ -7,12 +7,16 @@
 //  Copyright © 2018 Emiko Clark. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
 
 struct Constants {
     static let baseUrlString = "https://www.googleapis.com/youtube/v3/search?key="
     static let myAPIKey = "AIzaSyCz7ChsZALe88gbZuQyexQY82oQ1de6qZU"
     static let pageNum = 15
+    static let awsRed = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 230/255)
+    static let awsGray1 = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+    static let awsGray2 = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1.0)
 }
 
 

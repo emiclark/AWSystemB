@@ -13,7 +13,10 @@ class Feed1CollectionViewCell: UICollectionViewCell {
 
     lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
+//        iv.contentMode = .top
+        iv.layer.cornerRadius = 10
+        iv.layer.masksToBounds = true
         iv.clipsToBounds = true
         iv.image = UIImage(named: "channelDragonPlaceholder.png")
         return iv
@@ -21,31 +24,31 @@ class Feed1CollectionViewCell: UICollectionViewCell {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        label.font = UIFont.boldSystemFont(ofSize: 13.0)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
-        label.backgroundColor = UIColor.white
-        label.textColor = UIColor.darkGray
-        return label
-    }()
-
-    lazy var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16.0)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.backgroundColor = UIColor.white
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.clear
         label.textColor = UIColor.darkGray
         return label
     }()
 
     lazy var stackview: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel, subtitleLabel])
+        let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel])
         sv.axis = .vertical
-        sv.distribution = .fillEqually
+        sv.distribution = .fillProportionally
         sv.spacing = 3
         return sv
     }()
+
+    override init(frame: CGRect) {
+           super.init(frame: frame)
+           setupView()
+    }
+
+    required init?(coder: NSCoder) {
+       super.init(coder: coder)
+    }
 
     func setupView() {
         addSubview(stackview)
@@ -53,10 +56,15 @@ class Feed1CollectionViewCell: UICollectionViewCell {
         stackview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        thumbnailImageView.snp.makeConstraints { make in
+            make.leading.top.trailing.equalToSuperview()
+            make.height.equalTo(120)
+        }
     }
 
-    func configure(with snippet: Snippet) {
-        titleLabel.text = snippet.title
-        subtitleLabel.text = snippet.description
+    func configure(with video: Snippet?) {
+        guard let video = video else { return }
+        titleLabel.text = video.title
     }
 }

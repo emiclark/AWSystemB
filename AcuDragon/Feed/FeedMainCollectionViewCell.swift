@@ -8,15 +8,18 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 class FeedMainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
+    let feedModel = FeedModel()
 
     lazy var collectionView1: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 16
+        layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .orange
+        cv.backgroundColor = Constants.awsGray1
         return cv
     }()
 
@@ -44,24 +47,35 @@ class FeedMainCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-       return 5
+        return FeedModel.feedVideos.items?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
-        cell.backgroundColor = .blue
+        guard let video = FeedModel.feedVideos.items?[indexPath.section].snippet else { return cell }
+        cell.thumbnailImageView.sd_setShowActivityIndicatorView(true)
+        cell.thumbnailImageView.sd_setIndicatorStyle(.whiteLarge)
+        let imageUrl = URL(string: (video.thumbnails?.medium?.url ?? ""))
+        if imageUrl != nil {
+            cell.thumbnailImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named:  "dragonPlaceholder.jpg"), options: .highPriority, completed: nil)
+        }
+        cell.backgroundColor = Constants.awsRed
+        cell.configure(with: video)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: 150, height: 140)
-     }
+        let width = UIScreen.main.bounds.width * 0.75 - 12
+        let height = width * 9 / 16
+        VideoCell.videoHeight = height
+        return CGSize(width: width, height: height)
+    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        return UIEdgeInsets(top: 3, left: 6, bottom: 0, right: 6)
     }
 }

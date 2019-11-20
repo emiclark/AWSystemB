@@ -7,5 +7,6 @@ use_frameworks!
 target 'AcuDragon' do
     pod 'GoogleAPIClientForREST/YouTube', '~> 1.2.1'
     pod 'SnapKit', '~> 4.0'
+    pod 'SDWebImage', '~> 4.0'
  #   pod 'Google/SignIn', '~> 3.0.3'
 end
