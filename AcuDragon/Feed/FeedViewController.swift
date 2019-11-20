@@ -32,7 +32,6 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         feedCollectionview.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: "HeaderCollectionReusableView", withReuseIdentifier: "headerCellId")
         setupFeedViewController()
         feedModel.getTestData()
-//        dump(feedModel.feedVideos.items)
     }
 
     func setupFeedViewController() {

@@ -13,7 +13,8 @@ class Feed1CollectionViewCell: UICollectionViewCell {
 
     lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
+//        iv.contentMode = .top
         iv.layer.cornerRadius = 10
         iv.layer.masksToBounds = true
         iv.clipsToBounds = true
@@ -23,11 +24,11 @@ class Feed1CollectionViewCell: UICollectionViewCell {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        label.font = UIFont.boldSystemFont(ofSize: 13.0)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
-        label.backgroundColor = UIColor.white
-        label.text = "Title"
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.clear
         label.textColor = UIColor.darkGray
         return label
     }()
@@ -62,7 +63,8 @@ class Feed1CollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func configure(with video: Snippet) {
+    func configure(with video: Snippet?) {
+        guard let video = video else { return }
         titleLabel.text = video.title
     }
 }

@@ -9,10 +9,14 @@ PODS:
   - GTMSessionFetcher/Core (1.2.1)
   - GTMSessionFetcher/Full (1.2.1):
     - GTMSessionFetcher/Core (= 1.2.1)
+  - SDWebImage (4.4.7):
+    - SDWebImage/Core (= 4.4.7)
+  - SDWebImage/Core (4.4.7)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - GoogleAPIClientForREST/YouTube (~> 1.2.1)
+  - SDWebImage (~> 4.0)
   - SnapKit (~> 4.0)
 
 SPEC REPOS:
@@ -20,12 +24,15 @@ SPEC REPOS:
     - GoogleAPIClientForREST
     - GTMSessionFetcher
     - SnapKit
+  trunk:
+    - SDWebImage
 
 SPEC CHECKSUMS:
   GoogleAPIClientForREST: a8b95a252014ce2e618df6b75dc72eca2c00b4af
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  SDWebImage: c10d14a8883ebd89664f02a422006f66a85c0c5d
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: a097705c56525e8235c716520b66375ce5d30273
+PODFILE CHECKSUM: a207487d923fe13137f336a6256b1cd05cb6a8b6
 
 COCOAPODS: 1.8.4

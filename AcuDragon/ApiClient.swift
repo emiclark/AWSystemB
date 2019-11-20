@@ -31,7 +31,7 @@ class ApiClient {
         let urlRequest = URLRequest(url: url!)
 
         getVideoData(urlRequest: urlRequest, completion: { (Video) in
-            self.feedModel.feedVideos = Video
+            FeedModel.feedVideos = Video
 
             DispatchQueue.main.async() {
                 self.delegate?.updateUI()
@@ -56,10 +56,10 @@ class ApiClient {
 
                 DispatchQueue.main.async { [weak self] in
                     dump(result)
-//                    print((result.items?.count)!)
+                    print((result.items?.count)!)
                 }
 
-                completion(self.feedModel.feedVideos)
+                completion(FeedModel.feedVideos)
 
             } catch let error {
                 print("Failed to decode: \(error)")
