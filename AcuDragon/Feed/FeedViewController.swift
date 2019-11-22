@@ -22,8 +22,18 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         return cv
     }()
 
+    lazy var logoView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(named: "dragonRed.jpg")
+        return iv
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = Constants.awsGray1
+        self.navigationItem.titleView = logoView
+
         feedCollectionview.delegate = feedDatasource
         feedCollectionview.dataSource = feedDatasource
         feedCollectionview.register(Feed0CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")

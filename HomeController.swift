@@ -153,6 +153,18 @@
 //        self.collectionView?.reloadData()
 //    }
 //}
+
+
+//// cell shadow
+//cv.layer.cornerRadius = 10
+//cv.layer.borderWidth = 1.0
+//cv.layer.borderColor = UIColor.lightGray.cgColor
+//cv.layer.shadowColor = UIColor.gray.cgColor
+//cv.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+//cv.layer.shadowRadius = 2.0
+//cv.layer.shadowOpacity = 0.2
+//cv.layer.masksToBounds = false
+
 //
 ////===================== refactor for tabbar ==============
 ////class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
