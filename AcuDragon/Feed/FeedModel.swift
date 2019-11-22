@@ -23,6 +23,7 @@ class FeedModel: NSObject {
                 print("error:\(error)")
             }
         }
+        
         DispatchQueue.main.async() {
             self.delegate?.updateUI()
         }

@@ -18,7 +18,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         layout.minimumLineSpacing = 16
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = Constants.awsGray1
         return cv
     }()
 
@@ -26,7 +26,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         feedCollectionview.delegate = feedDatasource
         feedCollectionview.dataSource = feedDatasource
-        feedCollectionview.register(FeedMainCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")
+        feedCollectionview.register(Feed0CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")
         feedCollectionview.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId1")
         feedCollectionview.register(Feed2CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId2")
         feedCollectionview.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: "HeaderCollectionReusableView", withReuseIdentifier: "headerCellId")
