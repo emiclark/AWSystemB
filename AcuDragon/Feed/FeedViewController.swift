@@ -18,15 +18,25 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         layout.minimumLineSpacing = 16
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = Constants.awsGray1
         return cv
+    }()
+
+    lazy var logoView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(named: "dragonRed.jpg")
+        return iv
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = Constants.awsGray1
+        self.navigationItem.titleView = logoView
+
         feedCollectionview.delegate = feedDatasource
         feedCollectionview.dataSource = feedDatasource
-        feedCollectionview.register(FeedMainCollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")
+        feedCollectionview.register(Feed0CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")
         feedCollectionview.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId1")
         feedCollectionview.register(Feed2CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId2")
         feedCollectionview.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: "HeaderCollectionReusableView", withReuseIdentifier: "headerCellId")

@@ -21,31 +21,29 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 1 {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! FeedMainCollectionViewCell
-           return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! Feed0CollectionViewCell
+
+        if indexPath.section == 0 {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! Feed0CollectionViewCell
+            cell.backgroundColor = .white
+            return cell
         }
 
-        if indexPath.section == 2 {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! FeedMainCollectionViewCell
-           return cell
-        }
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! FeedMainCollectionViewCell
+//        if indexPath.section == 1 {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId2", for: indexPath) as! Feed0CollectionViewCell
+//            cell.backgroundColor = Constants.awsGray2
+//            return cell
+//        }
+//
+//        // header == 2
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId0", for: indexPath) as! Feed0CollectionViewCell
+//        cell.backgroundColor = Constants.awsGray2
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: UIScreen.main.bounds.width, height: 200)
-
-        if indexPath.section == 1 {
-            size.height = 200
-        }
-
-        if indexPath.section == 2 {
-            size.height = 200
-        }
-        return CGSize(width: size.width, height: size.height)
+        let height = (UIScreen.main.bounds.width * 9 / 16) + 40
+        return CGSize(width: UIScreen.main.bounds.width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -53,7 +51,7 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -63,6 +61,6 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 40)
+        return CGSize(width: UIScreen.main.bounds.width, height: 25)
     }
 }

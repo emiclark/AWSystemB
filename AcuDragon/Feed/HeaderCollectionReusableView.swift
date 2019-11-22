@@ -10,7 +10,12 @@ import UIKit
 
 class HeaderCollectionReusableView: UICollectionReusableView {
 
-    var headerLabel: UILabel = UILabel()
+    var headerLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .darkGray
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,13 +38,13 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         var headerText = ""
         switch section {
             case 0:
-                headerText = "Header 1"
+                headerText = "Featured"
             case 1:
-                headerText = "Header 2"
+                headerText = "Meditation"
             case 2:
-                headerText = "Header 3"
+                headerText = "Qigong"
             default:
-                headerText = "default"
+                headerText = "Other topics"
         }
         return headerText
     }
