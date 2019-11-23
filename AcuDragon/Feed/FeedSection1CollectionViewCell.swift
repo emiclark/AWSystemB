@@ -1,16 +1,16 @@
 //
-//  FeedSection0CollectionViewCell.swift
+//  FeedSection1CollectionViewCell.swift
 //  AcuDragon
 //
-//  Created by Emiko Clark on 11/21/19.
+//  Created by Emiko Clark on 11/22/19.
 //  Copyright © 2019 Emiko Clark. All rights reserved.
 //
 
 import UIKit
 
-class FeedSection0CollectionViewCell: UICollectionViewCell {
+class FeedSection1CollectionViewCell: UICollectionViewCell {
 
-        lazy var thumbnailImageView: UIImageView = {
+    lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.image = UIImage(named: "channelDragonPlaceholder.png")
@@ -22,7 +22,7 @@ class FeedSection0CollectionViewCell: UICollectionViewCell {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18.0)
+        label.font = UIFont.systemFont(ofSize: 20.0)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -36,7 +36,7 @@ class FeedSection0CollectionViewCell: UICollectionViewCell {
         sv.axis = .vertical
         sv.distribution = .fillProportionally
         sv.alignment = .center
-        sv.spacing = 2
+        sv.spacing = 0
         return sv
     }()
 
@@ -51,17 +51,9 @@ class FeedSection0CollectionViewCell: UICollectionViewCell {
 
     func setupView() {
         addSubview(stackview)
+
         stackview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-
-        thumbnailImageView.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
-            make.height.equalTo(160)
-        }
-
-        titleLabel.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
         }
     }
 
@@ -70,3 +62,4 @@ class FeedSection0CollectionViewCell: UICollectionViewCell {
         titleLabel.text = video.title
     }
 }
+

@@ -33,7 +33,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = Constants.awsGray1
         self.navigationItem.titleView = logoView
-
+        feedCollectionview.backgroundColor = Constants.awsGray1
         feedCollectionview.delegate = feedDatasource
         feedCollectionview.dataSource = feedDatasource
         feedCollectionview.register(Feed0CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")

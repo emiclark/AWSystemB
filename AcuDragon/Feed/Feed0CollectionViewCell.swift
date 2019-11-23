@@ -61,7 +61,17 @@ class Feed0CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
         cell.layer.cornerRadius = 10
         cell.layer.masksToBounds = true
         cell.clipsToBounds = true
-        cell.backgroundColor = Constants.awsGray1
+        cell.backgroundColor = .white
+
+        // cell shadow
+        cell.layer.cornerRadius = 10
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 0.6
+        cell.layer.masksToBounds = false
+        cell.layer.shouldRasterize = true
+        
         return cell
     }
 
@@ -69,14 +79,14 @@ class Feed0CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
         let width = UIScreen.main.bounds.width
         let height = width * 9 / 16
         VideoCell.videoHeight = height
-        return CGSize(width: (width * 0.70) - 20, height: height)
+        return CGSize(width: (width * 0.70) + 40, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 15
+        return 20
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 5)
+        return UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
     }
 }
