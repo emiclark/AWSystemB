@@ -12,7 +12,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
 
     var headerLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 22)
         label.textColor = .darkGray
         return label
     }()
@@ -30,7 +30,8 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     func setupViews() {
         addSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.top.equalToSuperview()
         }
     }
 
@@ -40,9 +41,9 @@ class HeaderCollectionReusableView: UICollectionReusableView {
             case 0:
                 headerText = "Featured"
             case 1:
-                headerText = "Meditation"
-            case 2:
                 headerText = "Qigong"
+            case 2:
+                headerText = "Meditation"
             default:
                 headerText = "Other topics"
         }
