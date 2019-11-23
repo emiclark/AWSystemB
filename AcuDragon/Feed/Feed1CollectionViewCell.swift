@@ -98,9 +98,8 @@ class Feed1CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
         let height = width * 9 / 16
-        VideoCell.videoHeight = height
-        return CGSize(width: 300, height: 200)
-//        return CGSize(width: width * 0.70, height: height)
+        VideoCell.videoHeight = height + 10
+        return CGSize(width: width * 0.60, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
