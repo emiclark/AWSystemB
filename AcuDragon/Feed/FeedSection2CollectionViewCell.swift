@@ -86,5 +86,17 @@ class FeedSection2CollectionViewCell: UICollectionViewCell {
         titleLabel.text = video.title
         subtitleLabel.text = video.description
     }
+
+    //    stackview.snp.makeConstraints { make in
+    //        make.leading.equalTo(thumbnailImageView.snp.trailing)
+    //        make.top.bottom.trailing.equalToSuperview()
+    //    }
+    //}
+    //
+    //func configure(with video: Snippet?) {
+    //    guard let video = video else { return }
+    //    titleLabel.text = video.title
+    //    subtitleLabel.text = video.description
+    //}
 }
 

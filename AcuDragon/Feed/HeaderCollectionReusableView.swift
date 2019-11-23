@@ -14,6 +14,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22)
         label.textColor = .darkGray
+        label.backgroundColor = .clear
         return label
     }()
 
@@ -30,8 +31,8 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     func setupViews() {
         addSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
-            make.top.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(20)
         }
     }
 
