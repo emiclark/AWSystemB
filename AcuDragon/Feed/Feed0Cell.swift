@@ -1,5 +1,5 @@
 //
-//  FeedSection0CollectionViewCell.swift
+//  Feed0Cell.swift
 //  AcuDragon
 //
 //  Created by Emiko Clark on 11/21/19.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class FeedSection0CollectionViewCell: UICollectionViewCell {
+class Feed0Cell: UICollectionViewCell {
+
+    public static let cellId = "cell0"
 
     lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
@@ -20,21 +22,12 @@ class FeedSection0CollectionViewCell: UICollectionViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18.0)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 2
         label.textAlignment = .center
         label.backgroundColor = UIColor.white
         label.textColor = UIColor.darkGray
         return label
-    }()
-
-    lazy var stackview: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel])
-        sv.axis = .vertical
-        sv.distribution = .fillProportionally
-        sv.alignment = .center
-        sv.spacing = 2
-        return sv
     }()
 
     override init(frame: CGRect) {
@@ -47,18 +40,16 @@ class FeedSection0CollectionViewCell: UICollectionViewCell {
     }
 
     func setupView() {
-        addSubview(stackview)
-        stackview.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        addSubview(thumbnailImageView)
+        addSubview(titleLabel)
 
         thumbnailImageView.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
-            make.height.equalTo(160)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(thumbnailImageView.snp.bottom).offset(3)
+            make.leading.trailing.equalToSuperview()
         }
     }
 
@@ -67,3 +58,16 @@ class FeedSection0CollectionViewCell: UICollectionViewCell {
         titleLabel.text = video.title
     }
 }
+
+
+//===
+//    lazy var thumbnailImageView: UIImageView = {
+//        let iv = UIImageView()
+//        iv.contentMode = .scaleAspectFill
+//        iv.image = UIImage(named: "channelDragonPlaceholder.png")
+////        iv.layer.cornerRadius = 10
+////        iv.layer.masksToBounds = true
+////        iv.frame = CGRect(x: 0, y: 0, width: 250, height: 240)
+////        iv.clipsToBounds = true
+//        return iv
+//    }()
