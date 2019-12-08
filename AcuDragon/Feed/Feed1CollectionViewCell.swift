@@ -13,52 +13,25 @@ import SDWebImage
 
 class Feed1CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-     let feedModel = FeedModel()
+    let feedModel = FeedModel()
+    public static let cellId = "cellId1"
+    let lineSpacing: CGFloat = 20
 
-    lazy var collectionView1: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = Constants.awsGray1
+        cv.backgroundColor = .white
         return cv
     }()
 
-    lazy var thumbnailImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.layer.cornerRadius = 10
-        iv.layer.masksToBounds = true
-        iv.clipsToBounds = true
-        iv.image = UIImage(named: "channelDragonPlaceholder.png")
-        return iv
-    }()
-
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 13.0)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.backgroundColor = UIColor.clear
-        label.textColor = UIColor.darkGray
-        return label
-    }()
-
-    lazy var stackview: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel])
-        sv.axis = .horizontal
-        sv.distribution = .fillProportionally
-        sv.spacing = 3
-        return sv
-    }()
-
-
     override init(frame: CGRect) {
         super.init(frame: frame)
+        collectionView.register(Feed1Cell.self, forCellWithReuseIdentifier: Feed1CollectionViewCell.cellId)
         setupView()
-        collectionView1.delegate = self
-        collectionView1.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -66,9 +39,8 @@ class Feed1CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
     }
 
     func setupView() {
-        addSubview(collectionView1)
-        collectionView1.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId1")
-        collectionView1.snp.makeConstraints { make in
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -82,7 +54,11 @@ class Feed1CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedCellId1", for: indexPath) as! Feed1CollectionViewCell
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed1CollectionViewCell.cellId, for: indexPath) as! Feed1Cell
+
+        cell.backgroundColor = .white
+
         guard let video = FeedModel.feedVideos.items?[indexPath.section].snippet else { return cell }
         cell.thumbnailImageView.sd_setShowActivityIndicatorView(true)
         cell.thumbnailImageView.sd_setIndicatorStyle(.whiteLarge)
@@ -90,105 +66,43 @@ class Feed1CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
         if imageUrl != nil {
             cell.thumbnailImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named:  "dragonPlaceholder.jpg"), options: .highPriority, completed: nil)
         }
-        cell.backgroundColor = Constants.awsRed
+
         cell.configure(with: video)
+
+        // cell rounded corner
+        cell.layer.masksToBounds = true
+        cell.clipsToBounds = true
+
+        // cell shadow
+        cell.layer.cornerRadius = 10
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = Constants.awsGray2.cgColor
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 0.6
+        cell.layer.masksToBounds = false
+        cell.layer.shouldRasterize = true
+
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width
-        let height = width * 9 / 16
-        VideoCell.videoHeight = height
-        return CGSize(width: 300, height: 200)
-//        return CGSize(width: width * 0.70, height: height)
+        return itemSize()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+        return lineSpacing
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
 
-    func configure(with video: Snippet?) {
-        guard let video = video else { return }
-        titleLabel.text = video.title
-    }
-
+    func itemSize() -> CGSize {
+        let width = UIScreen.main.bounds.width
+        let height = width * 9 / 16
+        VideoCell.videoHeight = height
+        return CGSize(width: width * 0.50, height: height)
+     }
 }
-
-
-
-//============
-//    lazy var collectionView1: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = 10
-//        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        cv.backgroundColor = .yellow
-//        return cv
-//    }()
-//
-//    lazy var thumbnailImageView: UIImageView = {
-//        let iv = UIImageView()
-//        iv.contentMode = .scaleAspectFit
-//        iv.layer.cornerRadius = 10
-//        iv.layer.masksToBounds = true
-//        iv.clipsToBounds = true
-//        iv.image = UIImage(named: "channelDragonPlaceholder.png")
-//        return iv
-//    }()
-//
-//    lazy var titleLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont.boldSystemFont(ofSize: 13.0)
-//        label.lineBreakMode = .byWordWrapping
-//        label.numberOfLines = 0
-//        label.textAlignment = .center
-//        label.backgroundColor = UIColor.clear
-//        label.textColor = UIColor.darkGray
-//        return label
-//    }()
-//
-//    lazy var stackview: UIStackView = {
-//        let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel])
-//        sv.axis = .horizontal
-//        sv.distribution = .fillProportionally
-//        sv.spacing = 3
-//        return sv
-//    }()
-//
-//    override init(frame: CGRect) {
-//           super.init(frame: frame)
-//           setupView()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//       super.init(coder: coder)
-//    }
-//
-//    func setupView() {
-//        addSubview(stackview)
-//
-//        stackview.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-//
-////        thumbnailImageView.snp.makeConstraints { make in
-////            make.leading.top.trailing.equalToSuperview().offset(3)
-////            make.width.height.equalTo(200)
-////        }
-////
-////        titleLabel.snp.makeConstraints { make in
-////            make.leading.equalTo(thumbnailImageView.snp.trailing)
-////            make.top.equalToSuperview().offset(3)
-////            make.trailing.equalToSuperview().offset(-3)
-////        }
-//    }
-//
-//    func configure(with video: Snippet?) {
-//        guard let video = video else { return }
-//        titleLabel.text = video.title
-//    }
-//}

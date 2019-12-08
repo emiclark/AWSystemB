@@ -12,13 +12,15 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
 
     private let feedModel = FeedModel()
     private let feedDatasource = FeedDataSource()
+    let detailVC = DetailViewController()
+    let cellId = "cellId"
 
     var feedCollectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 16
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = Constants.awsGray1
+        cv.backgroundColor = .white
         return cv
     }()
 
@@ -32,16 +34,19 @@ class FeedViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = Constants.awsGray1
+        feedCollectionview.backgroundColor = .white
         self.navigationItem.titleView = logoView
-
         feedCollectionview.delegate = feedDatasource
         feedCollectionview.dataSource = feedDatasource
-        feedCollectionview.register(Feed0CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId0")
-        feedCollectionview.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId1")
-        feedCollectionview.register(Feed2CollectionViewCell.self, forCellWithReuseIdentifier: "feedCellId2")
-        feedCollectionview.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: "HeaderCollectionReusableView", withReuseIdentifier: "headerCellId")
+        feedCollectionview.register(Feed0CollectionViewCell.self, forCellWithReuseIdentifier: Feed0CollectionViewCell.cellId)
+        feedCollectionview.register(Feed1CollectionViewCell.self, forCellWithReuseIdentifier: Feed1CollectionViewCell.cellId)
+        feedCollectionview.register(Feed2CollectionViewCell.self, forCellWithReuseIdentifier: Feed2CollectionViewCell.cellId)
+        feedCollectionview.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: "HeaderCollectionReusableView", withReuseIdentifier: HeaderCollectionReusableView.cellId)
         setupFeedViewController()
         feedModel.getTestData()
+        feedDatasource.presentViewController = { [weak self] viewController in
+            self?.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 
     func setupFeedViewController() {
