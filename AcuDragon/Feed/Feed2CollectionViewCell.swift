@@ -52,14 +52,7 @@ class Feed2CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed2CollectionViewCell.cellId, for: indexPath) as! Feed2Cell
 
         let video = FeedModel.feedVideos.items?[indexPath.row].snippet
-        cell.configure(with: video)
-
-        cell.thumbnailImageView.sd_setShowActivityIndicatorView(true)
-        cell.thumbnailImageView.sd_setIndicatorStyle(.whiteLarge)
-        let imageUrl = URL(string: (video?.thumbnails?.medium?.url ?? ""))
-        if imageUrl != nil {
-            cell.thumbnailImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named:  "dragonPlaceholder.jpg"), options: .highPriority, completed: nil)
-        }
+        cell.configure(with: video, for: indexPath.section)
 
         // cell rounded corner
         cell.layer.cornerRadius = 10
@@ -88,13 +81,12 @@ class Feed2CollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, U
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 40.0
+        return 10.0
     }
 
     func itemSize() -> CGSize {
         let width = UIScreen.main.bounds.width
-        let height = width * 9 / 16
-        VideoCell.videoHeight = height
-        return CGSize(width: width * 0.50, height: height - 35)
+        let height = CGFloat(150)
+        return CGSize(width: width * 0.85, height: height)
      }
 }

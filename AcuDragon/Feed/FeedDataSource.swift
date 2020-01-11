@@ -23,19 +23,20 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         var cell: UICollectionViewCell
-        cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed0CollectionViewCell.cellId, for: indexPath) as! Feed0CollectionViewCell
+//        cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed0CollectionViewCell.cellId, for: indexPath) as! Feed0CollectionViewCell
 
         switch indexPath.section {
-              case 0:
+            case 0:
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed0CollectionViewCell.cellId, for: indexPath) as! Feed0CollectionViewCell
-              case 1:
+            case 1:
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed1CollectionViewCell.cellId, for: indexPath) as! Feed1CollectionViewCell
-              case 2:
+            case 2:
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed2CollectionViewCell.cellId, for: indexPath) as! Feed2CollectionViewCell
               default:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed0CollectionViewCell.cellId, for: indexPath) as! Feed0CollectionViewCell
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: Feed2CollectionViewCell.cellId, for: indexPath) as! Feed2CollectionViewCell
         }
 
+//        configure(cell)
         return cell
     }
 
@@ -43,14 +44,14 @@ class FeedDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDele
         var height: CGFloat = 0.0
 
         switch (indexPath.section) {
-            case (0):
+            case 0:
                 height = 250
-            case (1):
+            case 1:
                 height = 260
-            case (2):
+            case 2:
                 height = 200
             default:
-                height = 150
+                height = 200
         }
 
         return CGSize(width: UIScreen.main.bounds.width, height: height)

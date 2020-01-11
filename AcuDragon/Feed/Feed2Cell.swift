@@ -14,8 +14,7 @@ class Feed2Cell: UICollectionViewCell {
 
     lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: "channelDragonPlaceholder.png")
+        iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = 10
         iv.layer.masksToBounds = true
         iv.clipsToBounds = true
@@ -37,7 +36,7 @@ class Feed2Cell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18.0)
         label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 3
+        label.numberOfLines = 0
         label.textAlignment = .left
         label.backgroundColor = UIColor.clear
         label.textColor = UIColor.darkGray
@@ -67,33 +66,33 @@ class Feed2Cell: UICollectionViewCell {
         addSubview(stackview)
 
         stackview.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(3)
-            make.trailing.equalToSuperview().offset(-3)
-            make.top.equalToSuperview().offset(5)
+            make.leading.top.trailing.equalToSuperview()
         }
 
         thumbnailImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(100)
+            make.leading.top.equalToSuperview().offset(5)
+            make.size.equalTo(45)
+        }
+
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(thumbnailImageView.snp.trailing).offset(5)
+            make.trailing.equalToSuperview().offset(-5)
+            make.top.equalTo(stackview).offset(5)
         }
 
         subtitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(5)
             make.trailing.equalToSuperview().offset(-5)
-            make.top.equalTo(stackview.snp.bottom).offset(5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
         }
     }
 
-    func configure(with video: Snippet?) {
+    func configure(with video: Snippet?, for section: Int) {
         guard let video = video else { return }
+
+        thumbnailImageView.image = UIImage(named: "dragonRed.png")
         titleLabel.text = video.title
         subtitleLabel.text = video.description
     }
-
-//    func size() -> CGSize {
-//        let width = UIScreen.main.bounds.width
-//        let height = width * 9 / 16
-//        VideoCell.videoHeight = height
-//        return CGSize(width: width * 0.50, height: height)
-//    }
 }
 
