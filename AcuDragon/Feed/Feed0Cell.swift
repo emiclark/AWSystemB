@@ -58,16 +58,3 @@ class Feed0Cell: UICollectionViewCell {
         titleLabel.text = video.title
     }
 }
-
-
-//===
-//    lazy var thumbnailImageView: UIImageView = {
-//        let iv = UIImageView()
-//        iv.contentMode = .scaleAspectFill
-//        iv.image = UIImage(named: "channelDragonPlaceholder.png")
-////        iv.layer.cornerRadius = 10
-////        iv.layer.masksToBounds = true
-////        iv.frame = CGRect(x: 0, y: 0, width: 250, height: 240)
-////        iv.clipsToBounds = true
-//        return iv
-//    }()
