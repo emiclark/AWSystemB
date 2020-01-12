@@ -37,7 +37,7 @@ class Feed2Cell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 18.0)
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 0
-        label.textAlignment = .left
+        label.textAlignment = .justified
         label.backgroundColor = UIColor.clear
         label.textColor = UIColor.darkGray
         return label
@@ -47,7 +47,7 @@ class Feed2Cell: UICollectionViewCell {
         let sv = UIStackView(arrangedSubviews: [thumbnailImageView, titleLabel])
         sv.axis = .horizontal
         sv.distribution = .fillProportionally
-        sv.alignment = .bottom
+        sv.alignment = .center
         sv.spacing = 5
         return sv
     }()
@@ -70,20 +70,14 @@ class Feed2Cell: UICollectionViewCell {
         }
 
         thumbnailImageView.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview().offset(5)
             make.size.equalTo(45)
         }
 
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(thumbnailImageView.snp.trailing).offset(5)
-            make.trailing.equalToSuperview().offset(-5)
-            make.top.equalTo(stackview).offset(5)
-        }
-
         subtitleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(5)
-            make.trailing.equalToSuperview().offset(-5)
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.leading.equalTo(stackview).offset(5)
+            make.trailing.equalTo(stackview).offset(-5)
+            make.top.equalTo(stackview.snp.bottom).offset(5)
+//            make.bottom.equalToSuperview()
         }
     }
 
