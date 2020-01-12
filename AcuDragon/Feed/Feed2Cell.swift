@@ -14,6 +14,7 @@ class Feed2Cell: UICollectionViewCell {
 
     lazy var thumbnailImageView: UIImageView = {
         let iv = UIImageView()
+//        let image = UIImage(named: "dragonRed.png")?.withRenderingMode(.alwaysTemplate)
         iv.contentMode = .scaleAspectFit
         iv.layer.cornerRadius = 10
         iv.layer.masksToBounds = true
@@ -84,10 +85,8 @@ class Feed2Cell: UICollectionViewCell {
         guard let video = video else { return }
 
         thumbnailImageView.image = UIImage(named: "dragonRed.png")
-        thumbnailImageView.tintColor = UIColor.purple
+        thumbnailImageView.tintColor = Constants.awsRed
         titleLabel.text = video.title
         subtitleLabel.text = video.description
     }
 }
-
-
