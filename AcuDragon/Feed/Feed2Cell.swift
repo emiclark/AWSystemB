@@ -77,7 +77,6 @@ class Feed2Cell: UICollectionViewCell {
             make.leading.equalTo(stackview).offset(5)
             make.trailing.equalTo(stackview).offset(-5)
             make.top.equalTo(stackview.snp.bottom).offset(5)
-//            make.bottom.equalToSuperview()
         }
     }
 
@@ -85,8 +84,10 @@ class Feed2Cell: UICollectionViewCell {
         guard let video = video else { return }
 
         thumbnailImageView.image = UIImage(named: "dragonRed.png")
+        thumbnailImageView.tintColor = UIColor.purple
         titleLabel.text = video.title
         subtitleLabel.text = video.description
     }
 }
+
 

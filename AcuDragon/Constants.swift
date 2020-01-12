@@ -14,7 +14,8 @@ struct Constants {
     static let baseUrlString = "https://www.googleapis.com/youtube/v3/search?key="
     static let myAPIKey = "AIzaSyCz7ChsZALe88gbZuQyexQY82oQ1de6qZU"
     static let pageNum = 15
-    static let awsRed = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 230/255)
+    static let awsRed =  UIColor.init(red: 230, green: 230, blue: 230, alpha: 230)
+//    static let awsRed = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 230/255)
     static let awsGray1 = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
     static let awsGray2 = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1.0)
         static let awsGray3 = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1.0)
